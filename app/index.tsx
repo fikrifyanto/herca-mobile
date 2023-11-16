@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TextInput, Pressable } from "react-native"
+import { View, Text, ScrollView, TextInput, TouchableOpacity } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import DateTimePicker from "@react-native-community/datetimepicker"
 import { useEffect, useState } from "react"
@@ -154,12 +154,14 @@ export default function Index() {
         </View>
       </ScrollView>
       <View className="absolute bottom-[15vh] right-0 left-0 justify-center items-center shadow-2xl">
-        <Link href="/transaction/add">
-          <View className="flex-row rounded-full bg-orange-500 items-center justify-center px-4 py-2 gap-x-2">
-            <Text className="text-white">Tambah Transaksi</Text>
-            <Ionicons name="add-circle-outline" size={24} color="white" />
-          </View>
-        </Link>
+        <TouchableOpacity>
+          <Link href="/transaction/add">
+            <View className="flex-row rounded-full bg-orange-500 items-center justify-center px-4 py-2 gap-x-2">
+              <Text className="text-white">Tambah Transaksi</Text>
+              <Ionicons name="add-circle-outline" size={24} color="white" />
+            </View>
+          </Link>
+        </TouchableOpacity>
       </View>
     </View>
   )
