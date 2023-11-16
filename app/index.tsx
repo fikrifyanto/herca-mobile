@@ -26,6 +26,20 @@ export default function Index() {
     }
   }
 
+  const [omzet, setOmzet] = useState(0)
+
+  const getOmzet = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/omzet")
+      const data = response.data.omzet
+      console.log(response.data)
+
+      setOmzet(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   function rupiah(amount) {
     const formattedAmount = new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -36,6 +50,7 @@ export default function Index() {
 
   useEffect(() => {
     getTransactions()
+    getOmzet()
   }, [])
 
   return (
@@ -45,7 +60,7 @@ export default function Index() {
           <View className="mb-4 border bg-orange-50 border-orange-500 rounded-lg p-4">
             <View className="flex-row justify-between items-center">
               <Text className="font-sembold">Omzet Bulan Ini</Text>
-              <Text className="font-bold text-lg text-orange-500">Rp. 250.000.000</Text>
+              <Text className="font-bold text-lg text-orange-500">{rupiah(omzet)}</Text>
             </View>
             <Link href="/commition">
               <Text className="text-orange-500 font-semibold underline">Lihat Semua Komisi</Text>
@@ -95,7 +110,7 @@ export default function Index() {
                   </View>
                   <View className="w-36 px-3 py-5">
                     <Text className="text-gray-600">
-                      {moment(transaction.created_at).format("DD MMMM YYYY")}
+                      {moment(transaction.date).format("DD MMMM YYYY")}
                     </Text>
                   </View>
                   <View className="w-36 px-3 py-5">

@@ -78,13 +78,13 @@ export default function Index() {
                     <Text className="text-gray-600">{commition.name}</Text>
                   </View>
                   <View className="w-36 px-3 py-5">
-                    <Text className="text-gray-600">November</Text>
+                    <Text className="text-gray-600">{commition.month}</Text>
                   </View>
                   <View className="w-36 px-3 py-5">
                     <Text className="text-gray-600">{rupiah(commition.omzet)}</Text>
                   </View>
                   <View className="w-36 px-3 py-5">
-                    <Text className="text-gray-600">{rupiah(commition.commitionPercent)}</Text>
+                    <Text className="text-gray-600">{commition.commitionPercent} %</Text>
                   </View>
                   <View className="w-36 px-3 py-5">
                     <Text className="text-gray-600">{rupiah(commition.commitionNominal)}</Text>
