@@ -11,26 +11,12 @@ Before you begin, make sure you have the following prerequisites installed on yo
 - [Node.js](https://nodejs.org/) (LTS version recommended)
 - [Yarn](https://yarnpkg.com/) (Alternative package manager for Node.js) or
 - [npm](https://www.npmjs.com/) (Node.js package manager)
+- [Expo CLI](https://www.npmjs.com/)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/) (Command Line Interface for Expo)
 
 ## Installation Steps
 
-### Step 1: Install Node.js and Yarn
-
-Download and install the latest LTS version of Node.js from [https://nodejs.org/](https://nodejs.org/). Then, install Yarn globally:
-
-```bash
-npm install -g yarn
-```
-
-### Step 2: Install Expo CLI
-
-Download and install the latest LTS version of Node.js from [https://nodejs.org/](https://nodejs.org/). Then, install Yarn globally:
-
-```bash
-npm install -g yarn
-```
-
-### Step 3: Clone the Repository
+### Step 1: Clone the Repository
 
 Clone the React Native repository using Git:
 
@@ -38,7 +24,7 @@ Clone the React Native repository using Git:
 git clone https://github.com/fikrifyanto/herca-mobile.git herca_mobile
 ```
 
-### Step 4: Navigate to the Project Directory
+### Step 2: Navigate to the Project Directory
 
 Once you have cloned the React Native repository, navigate to the project directory using the following command:
 
@@ -46,12 +32,18 @@ Once you have cloned the React Native repository, navigate to the project direct
 cd herca_mobile
 ```
 
-### Step 5: Install Dependencies
+### Step 3: Install Dependencies
 
 Use Composer to install the project dependencies:
 
 ```bash
 yarn install
+```
+
+### Step 4: Start Deveopment
+
+```bash
+yarn start
 ```
 
 ### Step 5: Open in Android
