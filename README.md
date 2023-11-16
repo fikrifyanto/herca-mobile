@@ -49,6 +49,6 @@ This will launch the Expo DevTools in your default web browser. You can run the 
 
 ### Conclusion
 
-You have successfully installed React Native with Expo and created a new project using Yarn! For more information and in-depth documentation, please refer to the Expo Documentation and React Native Documentation.
+You have successfully installed React Native with Expo and created a new project using Yarn! For more information and in-depth documentation, please refer to the [Expo Documentation](https://docs.expo.dev/) and [React Native Documentation](https://reactnative.dev/docs).
 
 Happy coding!
