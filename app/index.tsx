@@ -15,9 +15,13 @@ export default function Index() {
 
   const [transactions, setTransasctions] = useState([])
 
-  const getTransactions = async () => {
+  const getTransactions = async (keyword = null) => {
     try {
-      const response = await axios.get("http://localhost:8000/api/transaction")
+      const response = await axios.get("http://localhost:8000/api/transaction", {
+        params: {
+          keyword: keyword,
+        },
+      })
       const data = response.data.data
 
       setTransasctions(data)
@@ -66,14 +70,9 @@ export default function Index() {
             </Link>
           </View>
 
-          <Text className="mt-4">Filter Tanggal</Text>
-          <View className="flex-row -ml-3 mt-2">
-            <DateTimePicker value={date} mode={"date"} onChange={onChange} />
-            <DateTimePicker value={date} mode={"date"} onChange={onChange} />
-          </View>
-
           <Text className="mt-4">Cari</Text>
           <TextInput
+            onChangeText={(v) => getTransactions(v)}
             placeholder="Masukan No. Transaksi"
             className="bg-gray-200 rounded-lg px-4 py-2 mt-2"
           />
@@ -83,6 +82,9 @@ export default function Index() {
               <View className="flex-row divide-x divide-gray-300 bg-gray-100">
                 <View className="w-36 px-3 py-5">
                   <Text className="text-gray-700 font-semibold uppercase">No. Transaksi</Text>
+                </View>
+                <View className="w-36 px-3 py-5">
+                  <Text className="text-gray-700 font-semibold uppercase">Marketing</Text>
                 </View>
                 <View className="w-36 px-3 py-5">
                   <Text className="text-gray-700 font-semibold uppercase">Tanggal</Text>
@@ -106,6 +108,9 @@ export default function Index() {
                 <View key={transaction.id} className="flex-row divide-x divide-gray-300">
                   <View className="w-36 px-3 py-5">
                     <Text className="text-gray-600">{transaction.transaction_number}</Text>
+                  </View>
+                  <View className="w-36 px-3 py-5">
+                    <Text className="text-gray-600">{transaction.marketing.name}</Text>
                   </View>
                   <View className="w-36 px-3 py-5">
                     <Text className="text-gray-600">
