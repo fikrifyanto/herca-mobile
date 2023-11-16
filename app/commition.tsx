@@ -19,7 +19,6 @@ export default function Index() {
     try {
       const response = await axios.get("http://localhost:8000/api/commition")
       const data = response.data.data
-      console.log(data)
 
       setCommitions(data)
     } catch (error) {

@@ -32,7 +32,6 @@ export default function Index() {
     try {
       const response = await axios.get("http://localhost:8000/api/omzet")
       const data = response.data.omzet
-      console.log(response.data)
 
       setOmzet(data)
     } catch (error) {

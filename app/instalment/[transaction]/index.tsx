@@ -31,7 +31,6 @@ export default function AddTransaction() {
       const data = response.data.data
 
       setTransaction(data)
-      console.log(transaction)
     } catch (error) {
       console.error(error)
     }

@@ -2,13 +2,16 @@ import { View, Text, TextInput, ScrollView, TouchableOpacity } from "react-nativ
 import { Ionicons } from "@expo/vector-icons"
 import { Link } from "expo-router"
 import axios from "axios"
+import moment from "moment"
 import { useEffect, useState } from "react"
 import { useRouter } from "expo-router"
 import SelectDropdown from "react-native-select-dropdown"
+import DateTimePicker from "@react-native-community/datetimepicker"
 
 export default function AddTransaction() {
   const router = useRouter()
 
+  const [marketingsOrigin, setMarketingsOrigin] = useState([])
   const [marketings, setMarketings] = useState([])
   const [selectColor, setSelectColor] = useState("rgb(156 163 175)")
 
@@ -19,6 +22,7 @@ export default function AddTransaction() {
         return v.name
       })
 
+      setMarketingsOrigin(response.data.data)
       setMarketings(data)
     } catch (error) {
       console.error(error)
@@ -26,22 +30,40 @@ export default function AddTransaction() {
   }
 
   const [marketing, setMarketing] = useState("")
-  const [date, setDate] = useState("")
   const [cargoFee, setCargoFee] = useState("")
   const [totalBalance, setTotalBalance] = useState("")
   const [grandTotal, setGrandTotal] = useState("")
+  const [type, setType] = useState("")
+
+  const [date, setDate] = useState(new Date())
+  const [showDate, setShowDate] = useState(false)
+
+  function onChangeDate(e, selectedDate) {
+    setDate(selectedDate)
+    setShowDate(false)
+  }
+
+  function onPressDate() {
+    setShowDate(true)
+  }
 
   function submit() {
+    const data = {
+      marketing_id: marketing,
+      date: moment(date).format("YYYY-MM-DD"),
+      cargo_fee: cargoFee,
+      total_balance: totalBalance,
+      grand_total: grandTotal,
+      type: type,
+    }
+
     axios
-      .post("http://localhost:8000/transaction", {
-        marketing: marketing,
-        date: date,
-        cargoFee: cargoFee,
-        totalBalance: totalBalance,
-        grandTotal: grandTotal,
-      })
+      .post("http://localhost:8000/api/transaction", data)
       .then((response) => {
         router.push("/")
+      })
+      .catch((response) => {
+        console.log(response)
       })
   }
 
@@ -73,26 +95,59 @@ export default function AddTransaction() {
             buttonTextStyle={{ fontSize: 14, color: selectColor, textAlign: "left" }}
             data={marketings}
             onSelect={(selectedItem, index) => {
-              setMarketing(marketings[index])
+              setMarketing(marketingsOrigin[index].id)
               setSelectColor("black")
             }}
           />
-          <Text className="mt-4">Tanggal</Text>
-          <TextInput placeholder="Tanggal" className="bg-gray-200 rounded-lg px-4 py-2 mt-2" />
+          <View>
+            <Text className="mt-4">Tanggal</Text>
+            <TouchableOpacity
+              onPress={onPressDate}
+              className="bg-gray-200 rounded-lg px-4 py-2 mt-2">
+              <Text>{moment(date).format("DD MMMM YYYY")}</Text>
+            </TouchableOpacity>
+            {showDate && (
+              <View className="flex-row -ml-3 mt-2">
+                <DateTimePicker value={date} mode={"date"} onChange={onChangeDate} />
+              </View>
+            )}
+          </View>
           <Text className="mt-4">Cargo Fee</Text>
           <TextInput
+            keyboardType="numeric"
+            onChangeText={(v) => setCargoFee(v)}
             placeholder="Masukan Cargo Fee"
             className="bg-gray-200 rounded-lg px-4 py-2 mt-2"
           />
           <Text className="mt-4">Total Balance</Text>
           <TextInput
+            keyboardType="numeric"
+            onChangeText={(v) => setTotalBalance(v)}
             placeholder="Masukan Total Balance"
             className="bg-gray-200 rounded-lg px-4 py-2 mt-2"
           />
           <Text className="mt-4">Grand Total</Text>
           <TextInput
+            keyboardType="numeric"
+            onChangeText={(v) => setGrandTotal(v)}
             placeholder="Masukan Grand Total"
             className="bg-gray-200 rounded-lg px-4 py-2 mt-2"
+          />
+          <Text className="mt-4">Jenis Pembayaran</Text>
+          <SelectDropdown
+            buttonStyle={{
+              marginTop: 8,
+              height: 30,
+              width: "100%",
+              borderRadius: 6,
+              backgroundColor: "rgb(229 231 235)",
+            }}
+            buttonTextStyle={{ fontSize: 14, color: selectColor, textAlign: "left" }}
+            data={["cash", "credit"]}
+            onSelect={(selectedItem, index) => {
+              setType(selectedItem)
+              setSelectColor("black")
+            }}
           />
         </View>
       </ScrollView>
