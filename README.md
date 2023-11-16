@@ -39,20 +39,16 @@ Use Composer to install the project dependencies:
 yarn install
 ```
 
-### Step 4: Start Deveopment
+### Step 4: Run the Project
 
 ```bash
 yarn start
 ```
 
-### Step 5: Open in Android
+This will launch the Expo DevTools in your default web browser. You can run the app on an emulator or scan the QR code with the Expo Go app on your iOS or Android device to view the app in real-time.
 
-```bash
-yarn android
-```
+### Conclusion
 
-### Step 6: Open in iOS
+You have successfully installed React Native with Expo and created a new project using Yarn! For more information and in-depth documentation, please refer to the Expo Documentation and React Native Documentation.
 
-```bash
-yarn ios
-```
+Happy coding!
