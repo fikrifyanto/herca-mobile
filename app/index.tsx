@@ -44,10 +44,12 @@ export default function Index() {
         <View className="p-4 pb-[20vh]">
           <View className="mb-4 border bg-orange-50 border-orange-500 rounded-lg p-4">
             <View className="flex-row justify-between items-center">
-              <Text className="font-sembold">Komisi Kamu Bulan Ini</Text>
-              <Text className="font-bold text-lg text-orange-500">2.5%</Text>
+              <Text className="font-sembold">Omzet Bulan Ini</Text>
+              <Text className="font-bold text-lg text-orange-500">Rp. 250.000.000</Text>
             </View>
-            <Text className="text-orange-500 font-semibold underline">Lihat Semua Komisi</Text>
+            <Link href="/commition">
+              <Text className="text-orange-500 font-semibold underline">Lihat Semua Komisi</Text>
+            </Link>
           </View>
 
           <Text className="mt-4">Filter Tanggal</Text>
