@@ -11,7 +11,6 @@ Before you begin, make sure you have the following prerequisites installed on yo
 - [Node.js](https://nodejs.org/) (LTS version recommended)
 - [Yarn](https://yarnpkg.com/) (Alternative package manager for Node.js) or
 - [npm](https://www.npmjs.com/) (Node.js package manager)
-- [Expo CLI](https://www.npmjs.com/)
 - [Expo CLI](https://docs.expo.dev/get-started/installation/) (Command Line Interface for Expo)
 
 ## Installation Steps
